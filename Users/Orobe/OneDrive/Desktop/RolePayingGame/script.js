@@ -40,3 +40,33 @@ const locations = [
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
+
+function update(locations) {
+  button1.innerText = locations["button text"][0];
+  button2.innerText = locations["button text"][1];
+  button3.innerText = locations["button text"][2];
+  button1.onclick = locations["button functions"][0];
+  button2.onclick = locations["button functions"][1];
+  button3.onclick = locations["button functions"][2];
+  text.innerText = locations.text;
+}
+
+//function go tio store
+function goStore() {
+  update(locations[1]);
+}
+function goTown() {
+  update(locations[0]);
+}
+
+function buyHealth() {}
+
+function buyWeapon() {}
+
+function goCave() {
+  console.log("Going to cave.");
+}
+
+function fightDragon() {
+  console.log("Fighting dragon.");
+}
