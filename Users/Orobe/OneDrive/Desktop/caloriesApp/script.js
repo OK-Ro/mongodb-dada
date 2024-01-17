@@ -7,9 +7,28 @@ const output = document.getElementById("output");
 let isError = false;
 
 function cleanInputString(str) {
-  const strArray = str.split("");
-  const cleanStrArray = [];
-
-  for (let i = 0; i < strArray.length; i++) {}
+  const regex = /[+-\s]/g;
+  return str.replace(regex, "");
 }
 cleanInputString(str);
+
+function addEntry() {
+  const targetInputContainer = document.querySelector(
+    `#${entryDropdown.value} .input-container`
+  );
+  const entryNumber =
+    targetInputContainer.querySelectorAll('input[type="text"]').length;
+  const HTMLString = `
+  <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
+  <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
+  <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
+  <input
+    type="number"
+    min="0"
+    id="${entryDropdown.value}-${entryNumber}-calories"
+    placeholder="Calories"
+  />`;
+  targetInputContainer.innerHTML += HTMLString;
+}
+
+addEntryButton.addEventListnener("click", addEntry);
