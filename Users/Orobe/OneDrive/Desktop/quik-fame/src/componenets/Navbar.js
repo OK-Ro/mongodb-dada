@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faShoppingCart,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <NavbarContainer>
       <Logo>
         <Link to="/">Quik Fame</Link>
       </Logo>
-      <NavLinks>
+      <ToggleMenuButton onClick={toggleMenu}>
+        <FontAwesomeIcon icon={faBars} size="lg" />
+      </ToggleMenuButton>
+      <NavLinks open={menuOpen}>
         <NavLinkItem>
           <Link to="/instagram">Instagram</Link>
         </NavLinkItem>
@@ -44,6 +57,11 @@ const NavbarContainer = styled.nav`
   padding: 1rem 2rem;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const Logo = styled.div`
@@ -55,11 +73,41 @@ const Logo = styled.div`
   }
 `;
 
+const ToggleMenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
 const NavLinks = styled.ul`
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: ${(props) => (props.open ? "1rem" : "0")};
+    opacity: ${(props) => (props.open ? "1" : "0")};
+    visibility: ${(props) => (props.open ? "visible" : "hidden")};
+    transition: opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease;
+  }
 `;
 
 const NavLinkItem = styled.li`
@@ -74,12 +122,17 @@ const NavLinkItem = styled.li`
       color: #4caf50;
     }
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const IconsContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const IconLink = styled(Link)`
   margin-right: 1rem;
   color: #333;
@@ -98,4 +151,5 @@ const CartBadge = styled.span`
   border-radius: 50%;
   padding: 0.4px 4px;
 `;
+
 export default Navbar;
