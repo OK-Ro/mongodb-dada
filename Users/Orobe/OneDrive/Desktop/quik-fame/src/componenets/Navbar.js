@@ -20,9 +20,6 @@ const Navbar = () => {
       <Logo>
         <Link to="/">Quik Fame</Link>
       </Logo>
-      <ToggleMenuButton onClick={toggleMenu}>
-        <FontAwesomeIcon icon={faBars} size="lg" />
-      </ToggleMenuButton>
       <NavLinks open={menuOpen}>
         <NavLinkItem>
           <Link to="/instagram">Instagram</Link>
@@ -45,6 +42,9 @@ const Navbar = () => {
         <IconLink to="/profile">
           <FontAwesomeIcon icon={faUser} size="lg" />
         </IconLink>
+        <ToggleMenuButton onClick={toggleMenu}>
+          <FontAwesomeIcon icon={faBars} size="lg" />
+        </ToggleMenuButton>
       </IconsContainer>
     </NavbarContainer>
   );
@@ -58,9 +58,8 @@ const NavbarContainer = styled.nav`
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
+  @media (min-width: 769px) {
+    justify-content: center;
   }
 `;
 
@@ -73,30 +72,17 @@ const Logo = styled.div`
   }
 `;
 
-const ToggleMenuButton = styled.button`
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  color: #333;
-  font-size: 1.5rem;
-
-  @media (max-width: 768px) {
-    display: block;
-  }
-`;
-
 const NavLinks = styled.ul`
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+  background: red;
+  align-items: center;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     position: absolute;
     top: 60px;
@@ -108,10 +94,14 @@ const NavLinks = styled.ul`
     visibility: ${(props) => (props.open ? "visible" : "hidden")};
     transition: opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease;
   }
+
+  @media (min-width: 769px) {
+    margin: 0 auto;
+  }
 `;
 
 const NavLinkItem = styled.li`
-  margin-right: 1.5rem;
+  margin-right: 5rem;
 
   a {
     text-decoration: none;
@@ -125,12 +115,18 @@ const NavLinkItem = styled.li`
 
   @media (max-width: 768px) {
     margin-bottom: 1rem;
+    margin-right: 1.5rem;
   }
 `;
 
 const IconsContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media (min-width: 769px) {
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
 `;
 
 const IconLink = styled(Link)`
@@ -150,6 +146,20 @@ const CartBadge = styled.span`
   color: #fff;
   border-radius: 50%;
   padding: 0.4px 4px;
+`;
+
+const ToggleMenuButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 export default Navbar;
