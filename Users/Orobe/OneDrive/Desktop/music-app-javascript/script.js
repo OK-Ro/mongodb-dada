@@ -134,3 +134,5 @@ playButton.addEventListener("click", () => {
 });
 
 renderSongs(userData?.songs);
+
+const shuffleSong = () => {};
