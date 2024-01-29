@@ -51,12 +51,17 @@ const Navbar = () => {
 };
 
 const NavbarContainer = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure it's above other content */
 
   @media (min-width: 769px) {
     justify-content: center;
@@ -75,9 +80,6 @@ const Logo = styled.div`
 const NavLinks = styled.ul`
   display: flex;
   list-style: none;
-  margin: 0;
-  padding: 0;
-  background: red;
   align-items: center;
 
   @media (max-width: 768px) {
