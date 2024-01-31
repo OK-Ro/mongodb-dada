@@ -136,6 +136,25 @@ playButton.addEventListener("click", () => {
     playSong(userData?.currentSong.id);
   }
 });
+const playNextSong = () => {
+  const currentIndex = userData.songs.findIndex(
+    (song) => song.id === userData.currentSong.id
+  );
+  const nextIndex = (currentIndex + 1) % userData.songs.length;
+  playSong(userData.songs[nextIndex].id);
+};
+
+const playPreviousSong = () => {
+  const currentIndex = userData.songs.findIndex(
+    (song) => song.id === userData.currentSong.id
+  );
+  const previousIndex =
+    (currentIndex - 1 + userData.songs.length) % userData.songs.length;
+  playSong(userData.songs[previousIndex].id);
+};
+
+nextButton.addEventListener("click", playNextSong);
+previousButton.addEventListener("click", playPreviousSong);
 
 pauseButton.addEventListener("click", pauseSong);
 
