@@ -368,6 +368,22 @@ button:focus,
   }
 }
 .current-song {
-  background-color: #f0f0f0; /* Add your desired background color */
-  color: #333; /* Add your desired text color */
+  background-color: #ff00ff; /* Disco color, you can adjust as needed */
+  animation: disco 1s infinite alternate; /* Disco animation */
+  color: #fff; /* Text color */
+}
+
+@keyframes disco {
+  0% {
+    background-color: #ff00ff;
+  }
+  25% {
+    background-color: #00ff00;
+  }
+  50% {
+    background-color: #0000ff;
+  }
+  75% {
+    background-color: #ffff00;
+  }
 }
