@@ -367,3 +367,7 @@ button:focus,
     text-align: center;
   }
 }
+.current-song {
+  background-color: #f0f0f0; /* Add your desired background color */
+  color: #333; /* Add your desired text color */
+}
