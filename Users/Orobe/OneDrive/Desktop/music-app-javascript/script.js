@@ -124,7 +124,7 @@ const playPreviousSong = () => {
     playSong(previousSong.id);
   }
 };
-
+const shuffleSong = () => {};
 const getCurrentSongIndex = () => userData.songs.indexOf(userData.currentSong);
 
 const renderSongs = (array) => {
@@ -147,6 +147,9 @@ const renderSongs = (array) => {
     .join("");
 
   playlistSongs.innerHTML = songsHTML;
+};
+const highlightCurrentSong = () => {
+  const playlistSongElements = document.querySelectorAll(".playlist-song");
 };
 
 playButton.addEventListener("click", () => {
