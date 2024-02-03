@@ -98,17 +98,12 @@ const playSong = (id) => {
   userData.currentSong = song;
   playButton.classList.add("playing");
 
-  // Highlighting the currently playing song
-  const playlistItems = document.querySelectorAll(".playlist-song");
-  playlistItems.forEach((item) => {
-    if (item.id === `song-${song.id}`) {
-      item.classList.add("current-song");
-    } else {
-      item.classList.remove("current-song");
-    }
-  });
-
   audio.play();
+};
+const pauseSong = () => {
+  userData.currentTime = audio.songCurrentTime;
+  playButton.classList.remove("playing");
+  audio.pause();
 };
 
 const playNextSong = () => {
