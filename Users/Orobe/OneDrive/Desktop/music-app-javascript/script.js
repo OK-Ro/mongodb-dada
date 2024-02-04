@@ -153,6 +153,9 @@ const highlightCurrentSong = () => {
   const songToHighlight = document.getElementById(
     `song-${userData?.currentSong?.id}`
   );
+  if (songToHighlight) {
+    songToHighlight.setAttribute("aria-current", "true");
+  }
 
   playlistSongElements.forEach((songEl) => {
     songEl.removeAttribute("aria-current");
