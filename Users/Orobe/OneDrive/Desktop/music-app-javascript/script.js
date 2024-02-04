@@ -103,6 +103,8 @@ const playSong = (id) => {
 const pauseSong = () => {
   userData.currentTime = audio.songCurrentTime;
   playButton.classList.remove("playing");
+
+  highlightCurrentSong();
   audio.pause();
 };
 
@@ -161,7 +163,12 @@ const highlightCurrentSong = () => {
     songEl.removeAttribute("aria-current");
   });
 };
-
+const setPlayerDisplay = () => {
+  const setPlayerDisplay = () => {
+    const playingSong = document.getElementById("player-song-title");
+    const songArtist = document.getElementById("player-song-artist");
+  };
+};
 playButton.addEventListener("click", () => {
   if (userData?.currentSong === null) {
     playSong(userData?.songs[0].id);
