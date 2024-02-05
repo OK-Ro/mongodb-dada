@@ -353,7 +353,7 @@ button:focus,
   }
 
   .player-display-song-artist > p {
-    white-space: pre-wrap;
+    white-space: blue;
   }
 
   .player-display {

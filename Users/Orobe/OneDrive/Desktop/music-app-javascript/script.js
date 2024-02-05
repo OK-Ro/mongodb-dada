@@ -93,48 +93,69 @@ const playSong = (id) => {
   if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
     audio.currentTime = 0;
   } else {
-    audio.currentTime = userData.songCurrentTime;
+    audio.currentTime = userData?.songCurrentTime;
   }
   userData.currentSong = song;
   playButton.classList.add("playing");
 
+  highlightCurrentSong();
   audio.play();
 };
-const pauseSong = () => {
-  userData.currentTime = audio.songCurrentTime;
-  playButton.classList.remove("playing");
 
-  highlightCurrentSong();
+const pauseSong = () => {
+  userData.songCurrentTime = audio.currentTime;
+
+  playButton.classList.remove("playing");
   audio.pause();
 };
 
 const playNextSong = () => {
-  if (userData.currentSong === null) {
-    playSong(userData.songs[0].id);
+  if (userData?.currentSong === null) {
+    playSong(userData?.songs[0].id);
   } else {
     const currentSongIndex = getCurrentSongIndex();
-    const nextSong = userData.songs[currentSongIndex + 1];
+    const nextSong = userData?.songs[currentSongIndex + 1];
+
     playSong(nextSong.id);
   }
 };
+
 const playPreviousSong = () => {
-  if (userData.currentSong === null) {
-    return;
-  } else {
+  if (userData?.currentSong === null) return;
+  else {
     const currentSongIndex = getCurrentSongIndex();
-    const previousSong = userData.songs[currentSongIndex - 1];
+    const previousSong = userData?.songs[currentSongIndex - 1];
+
     playSong(previousSong.id);
   }
 };
-const shuffleSong = () => {};
-const getCurrentSongIndex = () => userData.songs.indexOf(userData.currentSong);
+
+const setPlayerDisplay = () => {
+  const playingSong = document.getElementById("player-song-title");
+  const songArtist = document.getElementById("player-song-artist");
+  const currentTitle = userData?.currentSong?.title;
+  const currentArtist = userData?.currentSong?.artist;
+};
+
+const highlightCurrentSong = () => {
+  const playlistSongElements = document.querySelectorAll(".playlist-song");
+  const songToHighlight = document.getElementById(
+    `song-${userData?.currentSong?.id}`
+  );
+
+  playlistSongElements.forEach((songEl) => {
+    songEl.removeAttribute("aria-current");
+  });
+
+  if (songToHighlight) songToHighlight.setAttribute("aria-current", "true");
+};
 
 const renderSongs = (array) => {
   const songsHTML = array
     .map((song) => {
       return `
       <li id="song-${song.id}" class="playlist-song">
-      <button class="playlist-song-info">
+      <button class="playlist-song-info" onclick="playSong(${song.id})">
           <span class="playlist-song-title">${song.title}</span>
           <span class="playlist-song-artist">${song.artist}</span>
           <span class="playlist-song-duration">${song.duration}</span>
@@ -150,27 +171,10 @@ const renderSongs = (array) => {
 
   playlistSongs.innerHTML = songsHTML;
 };
-const highlightCurrentSong = () => {
-  const playlistSongElements = document.querySelectorAll(".playlist-song");
-  const songToHighlight = document.getElementById(
-    `song-${userData?.currentSong?.id}`
-  );
-  if (songToHighlight) {
-    songToHighlight.setAttribute("aria-current", "true");
-  }
 
-  playlistSongElements.forEach((songEl) => {
-    songEl.removeAttribute("aria-current");
-  });
-};
-const setPlayerDisplay = () => {
-  const setPlayerDisplay = () => {
-    const playingSong = document.getElementById("player-song-title");
-    const songArtist = document.getElementById("player-song-artist");
-    const currentTitle = userData?.currentSong?.title;
-    const currentArtist = userData?.currentSong?.artist;
-  };
-};
+const getCurrentSongIndex = () =>
+  userData?.songs.indexOf(userData?.currentSong);
+
 playButton.addEventListener("click", () => {
   if (userData?.currentSong === null) {
     playSong(userData?.songs[0].id);
@@ -178,7 +182,23 @@ playButton.addEventListener("click", () => {
     playSong(userData?.currentSong.id);
   }
 });
+
 pauseButton.addEventListener("click", pauseSong);
+
 nextButton.addEventListener("click", playNextSong);
+
 previousButton.addEventListener("click", playPreviousSong);
+
+userData?.songs.sort((a, b) => {
+  if (a.title < b.title) {
+    return -1;
+  }
+
+  if (a.title > b.title) {
+    return 1;
+  }
+
+  return 0;
+});
+
 renderSongs(userData?.songs);
