@@ -252,5 +252,8 @@ userData?.songs.sort((a, b) => {
 
   return 0;
 });
+audio.addEventListener("ended", () => {
+  playNextSong();
+});
 
 renderSongs(userData?.songs);
