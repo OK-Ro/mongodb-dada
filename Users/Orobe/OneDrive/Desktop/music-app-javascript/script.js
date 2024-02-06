@@ -253,7 +253,15 @@ userData?.songs.sort((a, b) => {
   return 0;
 });
 audio.addEventListener("ended", () => {
-  playNextSong();
+  const currentSongIndex = getCurrentSongIndex();
+  const nextSongExists = userData?.songs[currentSongIndex + 1] !== undefined;
+
+  if (nextSongExists) {
+    playNextSong();
+  } else {
+    userData.currentSong = null;
+    userData.songCurrentTime = 0;
+  }
 });
 
 renderSongs(userData?.songs);
