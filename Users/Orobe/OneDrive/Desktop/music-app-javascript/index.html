@@ -1,20 +1,48 @@
 <!DOCTYPE html>
+<!-- Defines the document type and version of HTML -->
 <html lang="en">
+  <!-- Specifies the language of the document -->
   <head>
     <meta charset="UTF-8" />
+    <!-- Defines the character encoding for the document -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Sets the viewport properties for responsive design -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
       rel="stylesheet"
+      <!--
+      Link
+      to
+      Google
+      Fonts
+      for
+      Roboto
+      Mono
+      --
+    />
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Mono&display=swap"
       rel="stylesheet"
+      <!--
+      Link
+      to
+      Google
+      Fonts
+      for
+      Lato
+      and
+      Roboto
+      Mono
+      --
+    />
     />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Link to external stylesheet -->
     <title>
       Learn Basic String and Array Methods by Building a Music Player App
     </title>
+    <!-- Document title -->
   </head>
 
   <body>
@@ -26,6 +54,7 @@
             <div></div>
           </div>
           <h1 class="fcc-title">freeCodeCamp</h1>
+          <!-- Title for the player -->
           <div class="parallel-lines">
             <div></div>
             <div></div>
@@ -36,15 +65,26 @@
             <img
               src="https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/quincy-larson-album-art.jpg"
               alt="song cover art"
+              <!--
+              Image
+              for
+              the
+              album
+              art
+              --
+            />
             />
           </div>
           <div class="player-display">
             <div class="player-display-song-artist">
               <p id="player-song-title"></p>
+              <!-- Display for song title -->
               <p id="player-song-artist"></p>
+              <!-- Display for song artist -->
             </div>
             <div class="player-buttons">
               <button id="previous" class="previous" aria-label="Previous">
+                <!-- Button to go to previous song -->
                 <svg
                   width="24"
                   height="19"
@@ -60,7 +100,9 @@
                   />
                 </svg>
               </button>
+              <!-- More buttons for controlling the music player -->
               <button id="play" class="play" aria-label="Play">
+                <!-- Play button -->
                 <svg
                   width="17"
                   height="19"
@@ -72,6 +114,7 @@
                 </svg>
               </button>
               <button id="pause" class="pause" aria-label="Pause">
+                <!-- Pause button -->
                 <svg
                   width="17"
                   height="19"
@@ -83,7 +126,9 @@
                   <path d="M11.4 0H16.15V19H11.4V0Z" />
                 </svg>
               </button>
+              <!-- More buttons -->
               <button id="next" class="next" aria-label="Next">
+                <!-- Next button -->
                 <svg
                   width="24"
                   height="19"
@@ -95,7 +140,9 @@
                   <rect x="18.5885" width="4.63633" height="18.5453" />
                 </svg>
               </button>
+              <!-- More buttons -->
               <button id="shuffle" class="shuffle" aria-label="Shuffle">
+                <!-- Shuffle button -->
                 <svg
                   width="17"
                   height="14"
@@ -121,14 +168,17 @@
             <div></div>
           </div>
           <h2 class="playlist-title" id="playlist">Playlist</h2>
+          <!-- Title for the playlist -->
           <div class="parallel-lines">
             <div></div>
             <div></div>
           </div>
         </div>
         <ul id="playlist-songs"></ul>
+        <!-- List of songs in the playlist -->
       </div>
     </div>
     <script src="script.js"></script>
+    <!-- Link to external JavaScript file -->
   </body>
 </html>
