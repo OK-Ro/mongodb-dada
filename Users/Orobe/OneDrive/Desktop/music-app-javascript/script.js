@@ -78,13 +78,17 @@ const allSongs = [
   },
 ];
 
+// Audio object
 const audio = new Audio();
+
+// User data object
 let userData = {
   songs: [...allSongs],
   currentSong: null,
   songCurrentTime: 0,
 };
 
+// Function to play a song
 const playSong = (id) => {
   const song = userData?.songs.find((song) => song.id === id);
   audio.src = song.src;
@@ -104,6 +108,7 @@ const playSong = (id) => {
   audio.play();
 };
 
+// Function to pause the current song
 const pauseSong = () => {
   userData.songCurrentTime = audio.currentTime;
 
@@ -111,6 +116,7 @@ const pauseSong = () => {
   audio.pause();
 };
 
+// Function to play the next song
 const playNextSong = () => {
   if (userData?.currentSong === null) {
     playSong(userData?.songs[0].id);
@@ -122,6 +128,7 @@ const playNextSong = () => {
   }
 };
 
+// Function to play the previous song
 const playPreviousSong = () => {
   if (userData?.currentSong === null) return;
   else {
@@ -132,6 +139,7 @@ const playPreviousSong = () => {
   }
 };
 
+// Function to shuffle the playlist
 const shuffle = () => {
   userData?.songs.sort(() => Math.random() - 0.5);
   userData.currentSong = null;
@@ -143,6 +151,7 @@ const shuffle = () => {
   setPlayButtonAccessibleText();
 };
 
+// Function to delete a song from the playlist
 const deleteSong = (id) => {
   if (userData?.currentSong?.id === id) {
     userData.currentSong = null;
@@ -162,7 +171,7 @@ const deleteSong = (id) => {
     const resetText = document.createTextNode("Reset Playlist");
 
     resetButton.id = "reset";
-    resetButton.ariaLabel = "Reset playlist";
+    resetButton.setAttribute("aria-label", "Reset playlist");
     resetButton.appendChild(resetText);
     playlistSongs.appendChild(resetButton);
 
@@ -176,6 +185,7 @@ const deleteSong = (id) => {
   }
 };
 
+// Function to set the display of the player
 const setPlayerDisplay = () => {
   const playingSong = document.getElementById("player-song-title");
   const songArtist = document.getElementById("player-song-artist");
@@ -186,6 +196,7 @@ const setPlayerDisplay = () => {
   songArtist.textContent = currentArtist ? currentArtist : "";
 };
 
+// Function to highlight the current song
 const highlightCurrentSong = () => {
   const playlistSongElements = document.querySelectorAll(".playlist-song");
   const songToHighlight = document.getElementById(
@@ -199,6 +210,7 @@ const highlightCurrentSong = () => {
   if (songToHighlight) songToHighlight.setAttribute("aria-current", "true");
 };
 
+// Function to render the songs in the playlist
 const renderSongs = (array) => {
   const songsHTML = array
     .map((song) => {
@@ -221,6 +233,7 @@ const renderSongs = (array) => {
   playlistSongs.innerHTML = songsHTML;
 };
 
+// Function to set the accessible text of the play button
 const setPlayButtonAccessibleText = () => {
   const song = userData?.currentSong || userData?.songs[0];
 
@@ -230,9 +243,11 @@ const setPlayButtonAccessibleText = () => {
   );
 };
 
+// Function to get the index of the current song
 const getCurrentSongIndex = () =>
   userData?.songs.indexOf(userData?.currentSong);
 
+// Event listeners for player controls
 playButton.addEventListener("click", () => {
   if (userData?.currentSong === null) {
     playSong(userData?.songs[0].id);
@@ -242,13 +257,11 @@ playButton.addEventListener("click", () => {
 });
 
 pauseButton.addEventListener("click", pauseSong);
-
 nextButton.addEventListener("click", playNextSong);
-
 previousButton.addEventListener("click", playPreviousSong);
-
 shuffleButton.addEventListener("click", shuffle);
 
+// Event listener for when the current song ends
 audio.addEventListener("ended", () => {
   const currentSongIndex = getCurrentSongIndex();
   const nextSongExists = userData?.songs[currentSongIndex + 1] !== undefined;
@@ -261,6 +274,7 @@ audio.addEventListener("ended", () => {
   }
 });
 
+// Sort the songs alphabetically
 userData?.songs.sort((a, b) => {
   if (a.title < b.title) {
     return -1;
@@ -273,5 +287,8 @@ userData?.songs.sort((a, b) => {
   return 0;
 });
 
+// Render the songs
 renderSongs(userData?.songs);
+
+// Set the accessible text of the play button
 setPlayButtonAccessibleText();
