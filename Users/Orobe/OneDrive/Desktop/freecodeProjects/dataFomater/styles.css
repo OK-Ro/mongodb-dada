@@ -1,3 +1,4 @@
+/* Global reset and variable definitions */
 *,
 *::before,
 *::after {
@@ -10,15 +11,19 @@
   --dark-grey: #0a0a23;
   --white: #ffffff;
   --yellow: #f1be32;
+  --purple: #7d5bbe; /* New color for fancy effect */
 }
 
+/* Body styling */
 body {
   color: var(--white);
   background-color: var(--dark-grey);
+  font-family: "Segoe UI", Roboto, sans-serif; /* Improved font stack */
 }
 
+/* Title styling */
 .title-container {
-  margin: 10px 0;
+  margin: 20px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,83 +31,68 @@ body {
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 3rem; /* Increased font size for emphasis */
+  text-transform: uppercase; /* Fancy text transformation */
+  letter-spacing: 2px; /* Fancy letter spacing */
+  color: var(--yellow); /* Fancy color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Fancy shadow effect */
 }
 
-.date-svg {
-  width: 30px;
-  height: 30px;
-}
-
+/* Divider styling */
 .divider {
-  margin: auto;
+  margin: 20px auto;
   width: 150px;
-  height: 10px;
-  background-color: var(--yellow);
+  height: 5px; /* Thinner divider for elegance */
+  background-color: var(--purple); /* Fancy color */
+  border-radius: 10px; /* Rounded corners for a softer look */
 }
 
+/* Dropdown styling */
 .dropdown-container {
-  width: 50%;
+  width: 60%; /* Increased width for better alignment */
   margin: 40px auto;
   position: relative;
 }
 
 select {
   display: block;
-  margin: 20px auto 0;
+  margin: 20px auto;
   width: 100%;
   height: 50px;
-  font-size: 100%;
+  font-size: 1.2rem; /* Increased font size for better readability */
   font-weight: bold;
   cursor: pointer;
   background-color: var(--white);
-  border: none;
+  border: 2px solid var(--purple); /* Fancy border */
   color: var(--dark-grey);
   appearance: none;
   padding: 10px;
   padding-right: 38px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   transition: color 0.3s ease, background-color 0.3s ease,
-    border-bottom-color 0.3s ease;
+    border-color 0.3s ease; /* Smooth transition for a polished effect */
 }
 
 .select-icon {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 30px;
-  height: 36px;
+  top: 16px;
+  right: 16px;
   pointer-events: none;
-  padding-left: 5px;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .select-icon svg.icon {
-  transition: fill 0.3s ease;
   fill: var(--dark-grey);
 }
 
+/* Current date styling */
 #current-date {
   font-size: 2rem;
   text-align: center;
+  margin-top: 40px; /* Increased margin for better spacing */
+  color: var(--yellow); /* Fancy color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Fancy shadow effect */
 }
 
-@media (max-width: 375px) {
-  .title {
-    font-size: 2rem;
-  }
-
-  .dropdown-container {
-    width: 80%;
-  }
-
-  .date-svg {
-    display: none;
-  }
-}
-
-/* Define keyframes for animations */
+/* Keyframe animations */
 @keyframes fadeInOut {
   0% {
     opacity: 0;
