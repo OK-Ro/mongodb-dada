@@ -4,11 +4,11 @@ const dateOptionsSelectElement = document.getElementById("date-options");
 
 // Get current date and time components
 const date = new Date();
-const day = date.getDate(); // Get day of the month
-const month = date.getMonth() + 1; // Get month (Note: January is 0)
-const year = date.getFullYear(); // Get full year
-const hours = date.getHours(); // Get hours (24-hour format)
-const minutes = date.getMinutes(); // Get minutes
+const day = date.getDate();
+const month = date.getMonth() + 1;
+const year = date.getFullYear();
+const hours = date.getHours();
+const minutes = date.getMinutes();
 
 // Format the current date as "day-month-year"
 const formattedDate = `${day}-${month}-${year}`;
