@@ -38,3 +38,20 @@ dateOptionsSelectElement.addEventListener("change", () => {
       break;
   }
 });
+const timezoneSelectElement = document.getElementById("timezone-options");
+
+// Function to populate timezone options
+function populateTimezones() {
+  const timezones = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const timezoneOptions = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  timezoneOptions.forEach((timezone) => {
+    const option = document.createElement("option");
+    option.value = timezone;
+    option.textContent = timezone;
+    timezoneSelectElement.appendChild(option);
+  });
+}
+
+// Call the function to populate timezone options
+populateTimezones();
