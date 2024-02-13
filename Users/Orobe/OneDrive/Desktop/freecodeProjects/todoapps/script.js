@@ -32,15 +32,9 @@ taskForm.addEventListener("submit", (e) => {
 });
 const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
 
-const title = titleInput.value.trim();
-const date = dateInput.value.trim();
-const description = descriptionInput.value.trim();
-
-const id = title.toLowerCase().split(" ").join("-");
-
 const taskObj = {
-  id: id,
-  title: title,
-  date: date,
-  description: description,
+  id: `${titleInput.value.toLowerCase().split().join("-")}`,
+  title: titleInput.value,
+  date: dateInput.value,
+  description: descriptionInput.value,
 };
