@@ -22,6 +22,7 @@ closeTaskFormBtn.addEventListener("click", () => {
 });
 
 cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
+
 discardBtn.addEventListener("click", () => {
   confirmCloseDialog.close();
   taskForm.classList.toggle("hidden");
@@ -29,18 +30,22 @@ discardBtn.addEventListener("click", () => {
 
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
+  const taskObj = {
+    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
+    title: titleInput.value,
+    date: dateInput.value,
+    description: descriptionInput.value,
+  };
+
+  if (dataArrIndex === -1) {
+    taskData.unshift(taskObj);
+  }
+
+  taskData.forEach(({ id, title, date, description }) => {
+    tasksContainer.innerHTML += `
+          
+      `;
+  });
 });
-const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
-
-const taskObj = {
-  id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
-  title: titleInput.value,
-  date: dateInput.value,
-  description: descriptionInput.value,
-};
-
-if (dataArrIndex === -1) {
-  taskData.unshift(taskObj);
-}
-taskData.forEach(({id, title, date, description}) => {
-  (tasksContainer.innerHTML += ``})
