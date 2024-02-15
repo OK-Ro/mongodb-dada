@@ -55,3 +55,4 @@ taskForm.addEventListener("submit", (e) => {
       `;
   });
 });
+const reset = () => {};
