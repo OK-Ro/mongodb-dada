@@ -13,6 +13,14 @@ const descriptionInput = document.getElementById("description-input");
 const taskData = [];
 let currentTask = {};
 
+const reset = () => {
+  titleInput.value = "";
+  dateInput.value = "";
+  descriptionInput.value = "";
+  taskForm.classList.toggle("hidden");
+  currentTask = {};
+};
+
 openTaskFormBtn.addEventListener("click", () =>
   taskForm.classList.toggle("hidden")
 );
@@ -20,14 +28,16 @@ openTaskFormBtn.addEventListener("click", () =>
 closeTaskFormBtn.addEventListener("click", () => {
   const formInputsContainValues =
     titleInput.value || dateInput.value || descriptionInput.value;
+
   if (formInputsContainValues) {
     confirmCloseDialog.showModal();
   } else {
-    taskForm.classList.add("hidden");
+    reset();
   }
 });
 
 cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
+
 discardBtn.addEventListener("click", () => {
   confirmCloseDialog.close();
   reset();
@@ -59,11 +69,6 @@ taskForm.addEventListener("submit", (e) => {
         </div>
       `;
   });
+
+  reset();
 });
-const reset = () => {
-  titleInput.value = "";
-  dateInput.value = "";
-  descriptionInput.value = "";
-  taskForm.classList.toggle("hidden");
-  currentTask = {};
-};
