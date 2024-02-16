@@ -72,3 +72,22 @@ taskForm.addEventListener("submit", (e) => {
 
   reset();
 });
+// Event delegation for "Edit" and "Delete" buttons
+tasksContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn")) {
+    const taskId = e.target.closest(".task").id;
+    const taskIndex = taskData.findIndex((task) => task.id === taskId);
+
+    if (e.target.textContent === "Edit") {
+      const { title, date, description } = taskData[taskIndex];
+      titleInput.value = title;
+      dateInput.value = date;
+      descriptionInput.value = description;
+      currentTask = taskData[taskIndex];
+      addOrUpdateTaskBtn.textContent = "Update Task";
+    } else if (e.target.textContent === "Delete") {
+      taskData.splice(taskIndex, 1);
+      e.target.closest(".task").remove();
+    }
+  }
+});
