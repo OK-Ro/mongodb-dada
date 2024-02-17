@@ -1,64 +1,47 @@
-const url = "https://api-football-v1.p.rapidapi.com/v3/fixtures";
-const options = {
-  method: "GET",
+const axios = require("axios");
+
+const apiUrl = "https://api-football-v1.p.rapidapi.com/v2/fixtures/live";
+const apiKey = "your-api-key";
+const leagueId = "39";
+
+const apiOptions = {
   headers: {
-    "X-RapidAPI-Key": "3b6f1870dcmshaa36bb5ebb2e54ep1fd88cjsnb75795376b82",
-    "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+    "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+    "x-rapidapi-key": apiKey,
+  },
+  params: {
+    timezone: "Europe/London",
+    league: leagueId,
   },
 };
 
-const fetchFixtures = async () => {
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+const fetchDataWithRetry = async (maxRetries = 5) => {
+  let retries = 0;
+  while (retries < maxRetries) {
+    try {
+      const response = await axios.get(apiUrl, apiOptions);
+      return response.data.api.fixtures;
+    } catch (error) {
+      if (error.response && error.response.status === 429) {
+        const waitTime = Math.pow(2, retries) * 1000; // Exponential backoff
+        console.log(
+          `Rate limit exceeded. Retrying in ${waitTime / 1000} seconds...`
+        );
+        await new Promise((resolve) => setTimeout(resolve, waitTime));
+        retries++;
+      } else {
+        throw error;
+      }
     }
-    const data = await response.json();
-    if (!data || !data.response || !Array.isArray(data.response)) {
-      throw new Error("Invalid data structure received from API");
-    }
-    return data.response;
-  } catch (error) {
-    console.error("Error fetching fixtures:", error.message);
-    return []; // Return empty array to indicate no fixtures
   }
+  throw new Error(`Failed to fetch data after ${maxRetries} retries`);
 };
 
-const displayFixtures = (fixtures) => {
-  const liveScores = document.getElementById("liveScores");
-  liveScores.innerHTML = ""; // Clear previous fixtures
-
-  fixtures.forEach((fixture) => {
-    const {
-      fixture_id,
-      league,
-      homeTeam,
-      awayTeam,
-      goalsHomeTeam,
-      goalsAwayTeam,
-    } = fixture;
-
-    const fixtureElement = document.createElement("div");
-    fixtureElement.classList.add("fixture");
-
-    const fixtureInfo = document.createElement("p");
-    fixtureInfo.textContent = `${league.name}: ${homeTeam.team_name} vs ${awayTeam.team_name}`;
-
-    const scoreInfo = document.createElement("p");
-    scoreInfo.textContent = `Score: ${goalsHomeTeam || 0} - ${
-      goalsAwayTeam || 0
-    }`;
-
-    fixtureElement.appendChild(fixtureInfo);
-    fixtureElement.appendChild(scoreInfo);
-
-    liveScores.appendChild(fixtureElement);
+fetchDataWithRetry()
+  .then((data) => {
+    console.log(data);
+    // Add code here to display fixtures on the webpage
+  })
+  .catch((err) => {
+    console.error("Error fetching data:", err);
   });
-};
-
-const loadFixtures = async () => {
-  const fixtures = await fetchFixtures();
-  displayFixtures(fixtures);
-};
-
-document.addEventListener("DOMContentLoaded", loadFixtures);
