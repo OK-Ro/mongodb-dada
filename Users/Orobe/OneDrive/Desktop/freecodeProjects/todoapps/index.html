@@ -5,16 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bitcoin Halving Explained</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-    
+      .btc-rainbow {
+        background: linear-gradient(
+          to right,
+          red,
+          orange,
+          yellow,
+          green,
+          blue,
+          indigo,
+          violet
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: bold;
+      }
+
+      canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <h1><span class="btc-rainbow">Bitcoin</span> Halving Explained</h1>
       <p>
-        Learn about the <span class="btc-rainbow">Bitcoin</span> halving cycle, previous dates, and block reward
-        schedule.
+        Learn about the <span class="btc-rainbow">Bitcoin</span> halving cycle,
+        previous dates, and block reward schedule.
       </p>
 
       <!-- Countdown Timer -->
@@ -33,22 +55,98 @@
           <div class="countdown-label">Seconds</div>
         </div>
       </div>
-        <!-- Explanation of Bitcoin Halving -->
-        <div class="halving-explanation">
-          <h2>What is <span class="btc-rainbow">Bitcoin</span> Halving?</h2>
-          <p>
-            The <span class="btc-rainbow">Bitcoin</span> Halving is a pre-programmed event that reduces the reward
-            given to crypto miners by half approximately every four years. The
-            Halving is essential because it ensures that the supply of <span class="btc-rainbow">Bitcoin</span> is
-            kept in check and prevents inflation. The reduction of mining rewards
-            means that the demand for <span class="btc-rainbow">Bitcoin</span> is expected to increase, and its
-            value is likely to surge in response. It is anticipated to happen
-            every 210,000 blocks or roughly every four years, with the most
-            recent halving occurred in May 2020, reducing the reward from 12.5 to
-            6.25 BTC per block. The <span class="btc-rainbow">Bitcoin</span> Halving plays a crucial role in the
-            long-term viability and scarcity of <span class="btc-rainbow">Bitcoin</span>.
-          </p>
-        </div>
-    <script src="script.js"></script>
+      <!-- Explanation of Bitcoin Halving -->
+      <div class="halving-explanation">
+        <h2>What is <span class="btc-rainbow">Bitcoin</span> Halving?</h2>
+        <p>
+          The <span class="btc-rainbow">Bitcoin</span> Halving is a
+          pre-programmed event that reduces the reward given to crypto miners by
+          half approximately every four years. The Halving is essential because
+          it ensures that the supply of
+          <span class="btc-rainbow">Bitcoin</span> is kept in check and prevents
+          inflation. The reduction of mining rewards means that the demand for
+          <span class="btc-rainbow">Bitcoin</span> is expected to increase, and
+          its value is likely to surge in response. It is anticipated to happen
+          every 210,000 blocks or roughly every four years, with the most recent
+          halving occurred in May 2020, reducing the reward from 12.5 to 6.25
+          BTC per block. The <span class="btc-rainbow">Bitcoin</span> Halving
+          plays a crucial role in the long-term viability and scarcity of
+          <span class="btc-rainbow">Bitcoin</span>.
+        </p>
+      </div>
+
+      <!-- BTC Rainbow Chart -->
+      <div class="btc-chart">
+        <canvas id="btcChart"></canvas>
+      </div>
+    </div>
+
+    <script>
+      const ctx = document.getElementById("btcChart").getContext("2d");
+      const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, "red");
+      gradient.addColorStop(0.17, "orange");
+      gradient.addColorStop(0.33, "yellow");
+      gradient.addColorStop(0.5, "green");
+      gradient.addColorStop(0.67, "blue");
+      gradient.addColorStop(0.83, "indigo");
+      gradient.addColorStop(1, "violet");
+
+      const data = {
+        labels: [
+          "2009",
+          "2010",
+          "2011",
+          "2012",
+          "2013",
+          "2014",
+          "2015",
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+        ],
+        datasets: [
+          {
+            label: "Price in USD",
+            data: [
+              0, 0.08, 0.3, 4, 13, 127, 318, 571, 4920, 13794, 6988, 7172,
+              49158, 35935, 12964, 31888,
+            ],
+            fill: true,
+            borderColor: gradient,
+            tension: 0.4,
+          },
+        ],
+      };
+
+      const options = {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Year",
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: "Price in USD",
+            },
+          },
+        },
+      };
+
+      const btcChart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options,
+      });
+    </script>
   </body>
 </html>

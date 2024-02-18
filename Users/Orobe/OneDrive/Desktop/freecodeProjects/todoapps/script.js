@@ -32,3 +32,65 @@ const countdown = setInterval(function () {
       "Bitcoin halving event has ended!";
   }
 }, 1000);
+
+const ctx = document.getElementById("btcChart").getContext("2d");
+const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+gradient.addColorStop(0, "#ff4d00");
+gradient.addColorStop(0.5, "#ffcc01");
+gradient.addColorStop(1, "#00ff5f");
+
+const data = {
+  labels: [
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+  ],
+  datasets: [
+    {
+      label: "Price in USD",
+      data: [
+        0, 0.08, 0.3, 4, 13, 127, 318, 571, 4920, 13794, 6988, 7172, 49158,
+        35935, 12964, 31888,
+      ],
+      fill: true,
+      borderColor: gradient,
+      tension: 0.4,
+    },
+  ],
+};
+
+const options = {
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: "Year",
+      },
+    },
+    y: {
+      title: {
+        display: true,
+        text: "Price in USD",
+      },
+    },
+  },
+};
+
+const btcChart = new Chart(ctx, {
+  type: "line",
+  data: data,
+  options: options,
+});
