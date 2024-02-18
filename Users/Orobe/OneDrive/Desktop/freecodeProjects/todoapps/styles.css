@@ -1,53 +1,54 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-header {
-  background-color: #131638;
-  color: #fff;
-  padding: 20px 0;
+#countdown {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 24px;
   text-align: center;
 }
 
-h1 {
-  margin: 0;
+.countdown-title {
+  font-size: 24px;
+  color: #2e2e2e;
+  margin-bottom: 20px;
 }
 
-main {
-  padding: 20px;
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#fixtures {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.fixture {
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.fixture p {
-  margin: 0 0 10px;
-}
-
-.fixture .team-name {
-  font-size: 20px;
+.countdown-item {
+  font-size: 36px;
   font-weight: bold;
+  color: #333333;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  margin: 0 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.fixture .score {
-  font-size: 16px;
+.countdown-label {
+  font-size: 14px;
+  color: #666666;
+  text-transform: uppercase;
+  margin-top: 6px;
 }
 
-footer {
-  background-color: #131638;
-  color: #fff;
-  padding: 10px 0;
-  text-align: center;
+@media (max-width: 768px) {
+  #countdown {
+    width: 80%;
+  }
 }

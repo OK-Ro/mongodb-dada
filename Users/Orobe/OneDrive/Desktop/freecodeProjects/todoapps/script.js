@@ -1,47 +1,32 @@
-const axios = require("axios");
+// Set the date of the next Bitcoin halving event (example date)
+const nextHalvingDate = new Date("May 21, 2024 00:00:00 GMT+00:00").getTime();
 
-const apiUrl = "https://api-football-v1.p.rapidapi.com/v2/fixtures/live";
-const apiKey = "your-api-key";
-const leagueId = "39";
+// Update the countdown every second
+const countdown = setInterval(function () {
+  // Get the current date and time
+  const now = new Date().getTime();
 
-const apiOptions = {
-  headers: {
-    "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
-    "x-rapidapi-key": apiKey,
-  },
-  params: {
-    timezone: "Europe/London",
-    league: leagueId,
-  },
-};
+  // Calculate the remaining time
+  const distance = nextHalvingDate - now;
 
-const fetchDataWithRetry = async (maxRetries = 5) => {
-  let retries = 0;
-  while (retries < maxRetries) {
-    try {
-      const response = await axios.get(apiUrl, apiOptions);
-      return response.data.api.fixtures;
-    } catch (error) {
-      if (error.response && error.response.status === 429) {
-        const waitTime = Math.pow(2, retries) * 1000; // Exponential backoff
-        console.log(
-          `Rate limit exceeded. Retrying in ${waitTime / 1000} seconds...`
-        );
-        await new Promise((resolve) => setTimeout(resolve, waitTime));
-        retries++;
-      } else {
-        throw error;
-      }
-    }
+  // Calculate days, hours, minutes, and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the countdown
+  document.getElementById("countdown").innerHTML = `
+        <h2>Countdown to BTC Halving</h2>
+        <p>${days}d ${hours}h ${minutes}m ${seconds}s</p>
+    `;
+
+  // If the countdown is over, stop updating it
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("countdown").innerHTML =
+      "<h2>BTC Halving is happening now!</h2>";
   }
-  throw new Error(`Failed to fetch data after ${maxRetries} retries`);
-};
-
-fetchDataWithRetry()
-  .then((data) => {
-    console.log(data);
-    // Add code here to display fixtures on the webpage
-  })
-  .catch((err) => {
-    console.error("Error fetching data:", err);
-  });
+}, 1000);
