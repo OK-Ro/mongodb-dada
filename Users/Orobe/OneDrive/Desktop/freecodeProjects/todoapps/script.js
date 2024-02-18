@@ -1,5 +1,5 @@
 // Set the date of the Bitcoin halving event (in milliseconds)
-const halvingDate = new Date("May 8, 2024 00:00:00").getTime();
+const halvingDate = new Date("April 28, 2024 00:00:00").getTime();
 
 // Update the countdown every 1 second
 const countdown = setInterval(function () {
