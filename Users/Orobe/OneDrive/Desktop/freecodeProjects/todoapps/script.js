@@ -1,13 +1,13 @@
-// Set the date of the next Bitcoin halving event (example date)
-const nextHalvingDate = new Date("May 21, 2024 00:00:00 GMT+00:00").getTime();
+// Set the date of the Bitcoin halving event (in milliseconds)
+const halvingDate = new Date("May 8, 2024 00:00:00").getTime();
 
-// Update the countdown every second
+// Update the countdown every 1 second
 const countdown = setInterval(function () {
   // Get the current date and time
   const now = new Date().getTime();
 
-  // Calculate the remaining time
-  const distance = nextHalvingDate - now;
+  // Calculate the remaining time until the halving event
+  const distance = halvingDate - now;
 
   // Calculate days, hours, minutes, and seconds
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -18,15 +18,17 @@ const countdown = setInterval(function () {
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the countdown
-  document.getElementById("countdown").innerHTML = `
-        <h2>Countdown to BTC Halving</h2>
-        <p>${days}d ${hours}h ${minutes}m ${seconds}s</p>
-    `;
+  document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+  document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+  document.getElementById("minutes").innerHTML =
+    minutes < 10 ? "0" + minutes : minutes;
+  document.getElementById("seconds").innerHTML =
+    seconds < 10 ? "0" + seconds : seconds;
 
   // If the countdown is over, stop updating it
   if (distance < 0) {
     clearInterval(countdown);
     document.getElementById("countdown").innerHTML =
-      "<h2>BTC Halving is happening now!</h2>";
+      "Bitcoin halving event has ended!";
   }
 }, 1000);
