@@ -52,7 +52,7 @@ p {
   color: #666666;
   padding: 0 10px;
 }
-.btc-rainbow {
+/* .btc-rainbow {
   background: linear-gradient(
     to right,
     #f79d00,
@@ -69,4 +69,156 @@ p {
   background-clip: text;
   color: transparent;
   font-weight: bold;
+} */
+.btc-rainbow {
+  background: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+canvas {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.look-back {
+  margin-top: 40px;
+}
+
+.look-back h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.halving-info {
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.halving-info img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.halving-info h3 {
+  color: #1a1a1a;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.halving-info h3 {
+  color: #333333;
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: bolder;
+}
+.halving-info p {
+  color: #333333;
+  font-size: 10px;
+  line-height: 1.6;
+}
+/* CSS for price change */
+.price-change {
+  font-weight: bold;
+  display: inline;
+}
+.hidden {
+  display: none;
+}
+
+.green {
+  color: rgb(0, 255, 0);
+}
+
+.red {
+  color: red;
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+}
+
+.price-info p {
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.btc-logo {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.price-info h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bolder;
+}
+/* CSS for news articles */
+.news-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.news-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.news-card p {
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* CSS for "Read more" link */
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* CSS for images */
+.news-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS for the container */
+.learn-more {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
 }

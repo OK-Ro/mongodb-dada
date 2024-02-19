@@ -35,9 +35,13 @@ const countdown = setInterval(function () {
 
 const ctx = document.getElementById("btcChart").getContext("2d");
 const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-gradient.addColorStop(0, "#ff4d00");
-gradient.addColorStop(0.5, "#ffcc01");
-gradient.addColorStop(1, "#00ff5f");
+gradient.addColorStop(0, "red");
+gradient.addColorStop(0.17, "orange");
+gradient.addColorStop(0.33, "yellow");
+gradient.addColorStop(0.5, "green");
+gradient.addColorStop(0.67, "blue");
+gradient.addColorStop(0.83, "indigo");
+gradient.addColorStop(1, "violet");
 
 const data = {
   labels: [
@@ -94,3 +98,130 @@ const btcChart = new Chart(ctx, {
   data: data,
   options: options,
 });
+// Function to fetch BTC price data from CoinGecko API
+async function fetchBTCPrice() {
+  try {
+    const response = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true"
+    );
+    const data = await response.json();
+    const btcData = data.bitcoin;
+    const priceUSD = btcData.usd;
+    const priceChange = btcData.usd_24h_change.toFixed(2);
+
+    // Display BTC price
+    const btcPriceElement = document.getElementById("btc-price");
+    btcPriceElement.innerHTML = `<img
+                                    src="https://s3.coinmarketcap.com/static-gravity/image/6fbea0356edd48a4a68a4b877195443c.png"
+                                    alt="Bitcoin Logo"
+                                    class="btc-logo"
+                                  />
+                                  $${priceUSD}`;
+
+    // Display price change and apply appropriate color
+    const priceChangeElement = document.getElementById("price-change");
+    priceChangeElement.textContent = `${priceChange}% `;
+    priceChangeElement.classList.remove("green", "red"); // Remove existing classes
+    if (parseFloat(priceChange) > 0) {
+      priceChangeElement.classList.add("green");
+    } else if (parseFloat(priceChange) < 0) {
+      priceChangeElement.classList.add("red");
+    }
+
+    // Show the BTC price element
+    btcPriceElement.classList.remove("hidden");
+  } catch (error) {
+    console.error("Error fetching BTC price:", error);
+  }
+}
+
+// Function to update BTC price every 10 seconds
+async function updateBTCPrice() {
+  await fetchBTCPrice();
+  setInterval(fetchBTCPrice, 10000);
+}
+
+// Call the function to initially fetch and update BTC price
+updateBTCPrice();
+// Function to fetch news reports about BTC halving from CryptoCompare API
+async function fetchBTCNews() {
+  try {
+    const response = await fetch(
+      "https://min-api.cryptocompare.com/data/v2/news/?categories=BTC"
+    );
+    const data = await response.json();
+
+    // Select the container to display news reports
+    const newsContainer = document.querySelector(".news-reports");
+
+    // Clear any existing news reports
+    newsContainer.innerHTML = "";
+
+    // Iterate through the articles and create HTML elements for each article
+    data.Data.forEach((article) => {
+      // Create a card for each news article
+      const card = document.createElement("div");
+      card.classList.add("news-card");
+
+      // Add title
+      const title = document.createElement("h3");
+      title.textContent = article.title;
+
+      // Add description
+      const description = document.createElement("p");
+      description.textContent = article.body;
+
+      // Add image
+      const image = document.createElement("img");
+      image.src = article.imageurl; // Set image source
+      image.alt = "Article Image"; // Add alt attribute for accessibility
+      image.classList.add("article-image"); // Add a class for styling
+
+      // Add link to read more
+      const link = document.createElement("a");
+      link.textContent = "Read more";
+      link.href = article.url; // Set href to the article URL
+      link.target = "_blank"; // Open link in a new tab
+      link.rel = "noopener noreferrer"; // Add rel attribute for security
+      link.classList.add("read-more"); // Add a class for easier selection
+
+      // Append elements to the card
+      card.appendChild(title);
+      card.appendChild(description);
+      card.appendChild(image);
+      card.appendChild(link);
+
+      // Append card to the news container
+      newsContainer.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching BTC news:", error);
+  }
+}
+
+// Function to handle click on "Read more" link
+function handleReadMoreClick(event) {
+  event.preventDefault(); // Prevent default link behavior
+  const url = event.target.getAttribute("href"); // Get URL from href attribute
+  if (url) {
+    window.open(url, "_blank"); // Open link in a new tab
+  }
+}
+
+// Add event listener to all "Read more" links
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("read-more")) {
+    handleReadMoreClick(event);
+  }
+});
+
+// Function to update BTC news every 60 seconds
+async function updateBTCNews() {
+  while (true) {
+    await fetchBTCNews();
+    await new Promise((resolve) => setTimeout(resolve, 60000)); // Wait for 60 seconds before making the next request
+  }
+}
+
+// Call the function to initially fetch and update BTC news
+updateBTCNews();
