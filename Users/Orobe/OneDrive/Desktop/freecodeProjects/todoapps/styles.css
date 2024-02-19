@@ -1,224 +1,184 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+:root {
+  --white: #fff;
+  --light-grey: #f5f6f7;
+  --dark-grey: #0a0a23;
+  --yellow: #f1be32;
+  --golden-yellow: #feac32;
+}
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #ffffff;
+body {
+  background-color: var(--dark-grey);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: var(--light-grey);
+  margin: 20px 0 40px 0;
+}
+
+.todo-app {
+  background-color: var(--white);
+  width: 300px;
+  height: 350px;
+  border: 5px solid var(--yellow);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-h1,
-h2,
-h3 {
-  color: #1a1a1a;
+.btn {
+  cursor: pointer;
+  width: 100px;
+  margin: 10px;
+  color: var(--dark-grey);
+  background-color: var(--golden-yellow);
+  background-image: linear-gradient(#fecc4c, #ffac33);
+  border-color: var(--golden-yellow);
+  border-width: 3px;
 }
 
-p {
-  color: #333333;
-  line-height: 1.6;
+.btn:hover {
+  background-image: linear-gradient(#ffcc4c, #f89808);
 }
 
-.countdown-title {
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 20px;
+.large-btn {
+  width: 80%;
+  font-size: 1.2rem;
+  align-self: center;
+  justify-self: center;
 }
 
-.countdown-timer {
+.close-task-form-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.task-form {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 15px;
+  width: 300px;
+  height: 350px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.task-form-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.task-form-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.task-form-footer {
   display: flex;
   justify-content: center;
 }
 
-.countdown-item {
-  font-size: 48px;
-  color: #007bff;
-  padding: 0 10px;
+.task-form-label,
+#title-input,
+#date-input,
+#description-input {
+  display: block;
 }
 
-.countdown-labels {
-  display: flex;
-  justify-content: center;
-}
-
-.countdown-label {
-  font-size: 18px;
-  color: #666666;
-  padding: 0 10px;
-}
-/* .btc-rainbow {
-  background: linear-gradient(
-    to right,
-    #f79d00,
-    #ffcc01,
-    #f79d00,
-    #ffcc01,
-    #f79d00,
-    #ffcc01,
-    #f79d00,
-    #ffcc01,
-    #f79d00
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: bold;
-} */
-.btc-rainbow {
-  background: linear-gradient(
-    to right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.task-form-label {
+  margin-bottom: 5px;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
-canvas {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-.look-back {
-  margin-top: 40px;
-}
-
-.look-back h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.halving-info {
-  margin-bottom: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  padding: 20px;
-}
-
-.halving-info img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.halving-info h3 {
-  color: #1a1a1a;
-  font-size: 18px;
+#title-input,
+#date-input,
+#description-input {
+  width: 100%;
   margin-bottom: 10px;
+  padding: 2px;
 }
-.halving-info h3 {
-  color: #333333;
-  font-size: 20px;
-  line-height: 1.6;
-  font-weight: bolder;
+
+#confirm-close-dialog {
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 15px;
 }
-.halving-info p {
-  color: #333333;
-  font-size: 10px;
-  line-height: 1.6;
+
+.confirm-close-dialog-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
-/* CSS for price change */
-.price-change {
+
+.discard-message-text {
   font-weight: bold;
-  display: inline;
+  font-size: 1.5rem;
 }
+
+#tasks-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.task {
+  margin: 5px 0;
+}
+
 .hidden {
   display: none;
 }
 
-.green {
-  color: rgb(0, 255, 0);
-}
+@media (min-width: 576px) {
+  .todo-app,
+  .task-form {
+    width: 400px;
+    height: 450px;
+  }
 
-.red {
-  color: red;
-}
+  .task-form-label {
+    font-size: 1.5rem;
+  }
 
-.price-info {
-  display: flex;
-  align-items: center;
-}
+  #title-input,
+  #date-input {
+    height: 2rem;
+  }
 
-.price-info p {
-  margin-left: 10px;
-  font-size: 14px;
-  font-weight: bold;
-}
-.btc-logo {
-  width: 30px;
-  height: auto;
-  margin-right: 10px;
-}
-
-.price-info h3 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: bolder;
-}
-/* CSS for news articles */
-.news-card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.news-card h3 {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.news-card p {
-  font-size: 16px;
-  color: #333333;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-
-/* CSS for "Read more" link */
-.read-more {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 700;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.read-more:hover {
-  text-decoration: underline;
-}
-
-/* CSS for images */
-.news-image {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* CSS for the container */
-.learn-more {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 20px;
+  #title-input,
+  #date-input,
+  #description-input {
+    padding: 5px;
+    margin-bottom: 20px;
+  }
 }
