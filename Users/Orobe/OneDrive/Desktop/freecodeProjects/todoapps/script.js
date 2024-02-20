@@ -1,3 +1,4 @@
+// DOM elements
 const taskForm = document.getElementById("task-form");
 const confirmCloseDialog = document.getElementById("confirm-close-dialog");
 const openTaskFormBtn = document.getElementById("open-task-form-btn");
@@ -10,9 +11,13 @@ const titleInput = document.getElementById("title-input");
 const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
+// Task data
 const taskData = [];
 let currentTask = {};
 
+// Functions
+
+// Function to add or update task data
 const addOrUpdateTask = () => {
   const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
   const taskObj = {
@@ -27,6 +32,7 @@ const addOrUpdateTask = () => {
   }
 };
 
+// Function to update the tasks container in the DOM
 const updateTaskContainer = () => {
   taskData.forEach(({ id, title, date, description }) => {
     tasksContainer.innerHTML += `
@@ -41,6 +47,7 @@ const updateTaskContainer = () => {
   });
 };
 
+// Function to reset form inputs and currentTask
 const reset = () => {
   titleInput.value = "";
   dateInput.value = "";
@@ -48,6 +55,8 @@ const reset = () => {
   taskForm.classList.toggle("hidden");
   currentTask = {};
 };
+
+// Event listeners
 
 openTaskFormBtn.addEventListener("click", () =>
   taskForm.classList.toggle("hidden")
@@ -73,17 +82,9 @@ discardBtn.addEventListener("click", () => {
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  taskData.forEach(({ id, title, date, description }) => {
-    tasksContainer.innerHTML += `
-        <div class="task" id="${id}">
-          <p><strong>Title:</strong> ${title}</p>
-          <p><strong>Date:</strong> ${date}</p>
-          <p><strong>Description:</strong> ${description}</p>
-          <button type="button" class="btn">Edit</button>
-          <button type="button" class="btn">Delete</button>
-        </div>
-      `;
-  });
+  // Call function to update tasks container
+  updateTaskContainer();
 
+  // Call function to reset form inputs and currentTask
   reset();
 });
