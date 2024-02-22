@@ -15,8 +15,6 @@ const descriptionInput = document.getElementById("description-input");
 const taskData = [];
 let currentTask = {};
 
-// Functions
-
 // Function to reset form inputs and currentTask
 const reset = () => {
   titleInput.value = "";
