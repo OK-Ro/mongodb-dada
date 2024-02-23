@@ -4,259 +4,88 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Website Bank</title>
+    <title>Learn localStorage by Building a Todo App</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <!-- Header Section -->
-    <header class="header-section">
-      <div class="header-container">
-        <!-- Logo -->
-        <div class="logo-container">
-          <img
-            src="https://logos-download.com/wp-content/uploads/2019/11/Web_Bank_Logo.png"
-            alt="Your Platform Name"
-          />
-        </div>
-        <!-- Navigation Menu -->
-        <nav class="nav-menu">
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <!-- Dropdown Menu for Templates -->
-            <li class="dropdown-menu">
-              <a href="#" class="dropbtn">Templates</a>
-              <div class="dropdown-content">
-                <a href="#">Business & Corporate</a>
-                <a href="#">Portfolio & Creative</a>
-                <a href="#">E-commerce & Online Store</a>
-                <a href="#">Blog & Magazine</a>
-                <a href="#">Personal Website</a>
-                <a href="#">Photography & Art</a>
-                <a href="#">Restaurant & Food</a>
-                <a href="#">Travel & Tourism</a>
-                <a href="#">Health & Fitness</a>
-                <a href="#">Education & Learning</a>
-              </div>
-            </li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-        <!-- Search Bar -->
-        <div class="search-section">
-          <input type="text" placeholder="Search..." />
-          <button type="submit">Search</button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-container">
-        <h1>Discover Your Perfect Website</h1>
-        <p>
-          Find the ideal website template for your project with Website Bank.
-          Our carefully curated selection offers templates for every need, from
-          sleek business sites to captivating portfolios and vibrant e-commerce
-          stores. Stand out from the crowd and impress your visitors with our
-          professionally designed and fully customizable templates. Get started
-          today and unlock the potential of your online presence!
-        </p>
-        <a href="#templates" class="cta-button">Explore Templates</a>
-      </div>
-    </section>
-
-    <!-- Featured Templates Section -->
-    <section class="featured-templates-section">
-      <div class="featured-templates-container">
-        <h2>Featured Templates</h2>
-        <div class="template">
-          <img
-            src="https://th.bing.com/th/id/OIP.Jj9J6E_COTFKUVjiKLorvwHaGZ?w=186&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-            alt="BusinessPro"
-          />
-          <h3>BusinessPro</h3>
-          <p>
-            A sleek and professional template perfect for business websites.
-          </p>
-          <a href="#" class="featured-btn">View Details</a>
-        </div>
-        <div class="template">
-          <img
-            src="https://th.bing.com/th/id/OIP.LubZGdf1qHT7NvszV9AiKQHaFj?rs=1&pid=ImgDetMain"
-            alt="CreativeWorks"
-          />
-          <h3>CreativeWorks</h3>
-          <p>
-            An innovative and creative template ideal for portfolio websites.
-          </p>
-          <a href="#" class="featured-btn">View Details</a>
-        </div>
-        <div class="template">
-          <img
-            src="https://blendermedia.com/wp-content/uploads/2016/07/July12_banner.jpg"
-            alt="E-StorePro"
-          />
-          <h3>E-StorePro</h3>
-          <p>
-            A fully customizable template designed for e-commerce and online
-            stores.
-          </p>
-          <a href="#" class="featured-btn">View Details</a>
-        </div>
-        <div class="template">
-          <img
-            src="https://webneel.com/daily/sites/default/files/images/daily/02-2014/10-beautiful-websites.jpg"
-            alt="MagazinePlus"
-          />
-          <h3>MagazinePlus</h3>
-          <p>
-            An elegant and feature-rich template perfect for blogs and online
-            magazines.
-          </p>
-          <a href="#" class="featured-btn">View Details</a>
-        </div>
-        <div class="template">
-          <img
-            src="https://webneel.com/daily/sites/default/files/images/daily/02-2014/13-beautiful-website.jpg"
-            alt="Travelify"
-          />
-          <h3>Travelify</h3>
-          <p>
-            A captivating template designed for travel blogs and tourism
-            websites.
-          </p>
-          <a href="#" class="featured-btn">View Details</a>
-        </div>
-        <div class="template">
-          <img
-            src="https://cdn.dribbble.com/users/5796985/screenshots/14427400/media/edbe0e672fc47d50a6b278f7c5ae0970.png"
-            alt="FitLife"
-          />
-          <h3>FitLife</h3>
-          <p>
-            A vibrant and energetic template tailored for health and fitness
-            websites.
-          </p>
-          <a href="#" class="featured-btn">View Details</a>
-        </div>
-        <!-- Add more template entries as needed -->
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section">
-      <div class="services-container">
-        <h2>Services Offered</h2>
-        <div class="service">
-          <img src="design-icon.png" alt="Website Design" />
-          <h3>Website Design</h3>
-          <p>
-            We offer professionally designed website templates to suit various
-            needs and industries.
-          </p>
-        </div>
-        <div class="service">
-          <img src="customization-icon.png" alt="Customization" />
-          <h3>Customization</h3>
-          <p>
-            Customize our templates to match your brand identity and unique
-            requirements.
-          </p>
-        </div>
-        <div class="service">
-          <img src="hosting-icon.png" alt="Hosting" />
-          <h3>Hosting</h3>
-          <p>
-            Reliable hosting solutions to ensure your website is always
-            accessible to visitors.
-          </p>
-        </div>
-        <div class="service">
-          <img src="support-icon.png" alt="Support" />
-          <h3>Support</h3>
-          <p>
-            24/7 customer support to assist you with any questions or issues you
-            may encounter.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-      <div class="testimonials-container">
-        <h2>Testimonials</h2>
-        <div class="testimonial">
-          <div class="testimonial-text">
-            <p>
-              "I am extremely satisfied with the website template I purchased
-              from your platform. It was easy to customize and fit my needs
-              perfectly."
-            </p>
+    <main>
+      <h1>Todo App</h1>
+      <div class="todo-app">
+        <button id="open-task-form-btn" class="btn large-btn">
+          Add New Task
+        </button>
+        <form class="task-form hidden" id="task-form">
+          <div class="task-form-header">
+            <button
+              id="close-task-form-btn"
+              class="close-task-form-btn"
+              type="button"
+              aria-label="close"
+            >
+              <svg
+                class="close-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                width="48px"
+                height="48px"
+              >
+                <path
+                  fill="#F44336"
+                  d="M21.5 4.5H26.501V43.5H21.5z"
+                  transform="rotate(45.001 24 24)"
+                />
+                <path
+                  fill="#F44336"
+                  d="M21.5 4.5H26.5V43.501H21.5z"
+                  transform="rotate(135.008 24 24)"
+                />
+              </svg>
+            </button>
           </div>
-          <div class="testimonial-author">
-            <p>- John Doe</p>
+          <div class="task-form-body">
+            <label class="task-form-label" for="title-input">Title</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="title-input"
+              value=""
+            />
+            <label class="task-form-label" for="date-input">Date</label>
+            <input type="date" class="form-control" id="date-input" value="" />
+            <label class="task-form-label" for="description-input"
+              >Description</label
+            >
+            <textarea
+              class="form-control"
+              id="description-input"
+              cols="30"
+              rows="5"
+            ></textarea>
           </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-text">
-            <p>
-              "The support team was incredibly helpful and responsive. They
-              answered all of my questions promptly and made the process
-              smooth."
-            </p>
+          <div class="task-form-footer">
+            <button
+              id="add-or-update-task-btn"
+              class="btn large-btn"
+              type="submit"
+            >
+              Add Task
+            </button>
           </div>
-          <div class="testimonial-author">
-            <p>- Jane Smith</p>
-          </div>
-        </div>
+        </form>
+        <dialog id="confirm-close-dialog">
+          <form method="dialog">
+            <p class="discard-message-text">Discard unsaved changes?</p>
+            <div class="confirm-close-dialog-btn-container">
+              <button id="cancel-btn" class="btn">Cancel</button>
+              <button id="discard-btn" class="btn">Discard</button>
+            </div>
+          </form>
+        </dialog>
+        <div id="tasks-container"></div>
       </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="cta-section">
-      <div class="cta-container">
-        <h2>Ready to Get Started?</h2>
-        <p>
-          Explore our collection of website templates and take your online
-          presence to the next level.
-        </p>
-        <a href="#templates" class="cta-button">Explore Templates</a>
-      </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="footer-section">
-      <div class="footer-container">
-        <!-- Footer Links -->
-        <div class="footer-links">
-          <ul>
-            <li><a href="#terms">Terms of Service</a></li>
-            <li><a href="#privacy">Privacy Policy</a></li>
-            <li><a href="#faqs">FAQs</a></li>
-          </ul>
-        </div>
-        <!-- Contact Information -->
-        <div class="contact-info">
-          <p>Contact Us:</p>
-          <p>Email: info@example.com</p>
-          <p>Phone: 123-456-7890</p>
-        </div>
-        <!-- Social Media Links -->
-        <div class="social-links">
-          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-    </footer>
-
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
