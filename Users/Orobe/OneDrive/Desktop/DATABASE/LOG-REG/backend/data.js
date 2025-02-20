@@ -1,0 +1,103 @@
+[
+  {
+    firstName: "Alice",
+    surName: "Smith",
+    email: "alice.smith@admin.com",
+    password: "adminpassword123",
+    role: "admin",
+  },
+  {
+    firstName: "Bob",
+    surName: "Brown",
+    email: "bob.brown@admin.com",
+    password: "adminpassword456",
+    role: "admin",
+  },
+  {
+    firstName: "Charlie",
+    surName: "Davis",
+    email: "charlie.davis@admin.com",
+    password: "adminpassword789",
+    role: "admin",
+  },
+  {
+    firstName: "Diana",
+    surName: "Miller",
+    email: "diana.miller@admin.com",
+    password: "adminpassword101",
+    role: "admin",
+  },
+];
+
+const clients = [
+  {
+    firstName: "Michael",
+    surName: "Johnson",
+    email: "michael.johnson@example.com",
+    password: "clientpassword123",
+    role: "client",
+  },
+  {
+    firstName: "Emily",
+    surName: "Davis",
+    email: "emily.davis@example.com",
+    password: "clientpassword456",
+    role: "client",
+  },
+  {
+    firstName: "David",
+    surName: "Miller",
+    email: "david.miller@example.com",
+    password: "clientpassword789",
+    role: "client",
+  },
+  {
+    firstName: "Sophia",
+    surName: "Wilson",
+    email: "sophia.wilson@example.com",
+    password: "clientpassword101",
+    role: "client",
+  },
+  {
+    firstName: "James",
+    surName: "Martinez",
+    email: "james.martinez@example.com",
+    password: "clientpassword202",
+    role: "client",
+  },
+  {
+    firstName: "Isabella",
+    surName: "Garcia",
+    email: "isabella.garcia@example.com",
+    password: "clientpassword303",
+    role: "client",
+  },
+  {
+    firstName: "Benjamin",
+    surName: "Rodriguez",
+    email: "benjamin.rodriguez@example.com",
+    password: "clientpassword404",
+    role: "client",
+  },
+  {
+    firstName: "Charlotte",
+    surName: "Martinez",
+    email: "charlotte.martinez@example.com",
+    password: "clientpassword505",
+    role: "client",
+  },
+  {
+    firstName: "Oliver",
+    surName: "Hernandez",
+    email: "oliver.hernandez@example.com",
+    password: "clientpassword606",
+    role: "client",
+  },
+  {
+    firstName: "Ava",
+    surName: "Lopez",
+    email: "ava.lopez@example.com",
+    password: "clientpassword707",
+    role: "client",
+  },
+];
